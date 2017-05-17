@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.snakka.helloandroid.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/numInput1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/numInput"
+                android:inputType="textPersonName"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="81dp" />
+
+            <TextView
+                android:id="@+id/calcResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calcResultDefault"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteY="394dp"
+                app:layout_constraintHorizontal_bias="0.466" />
+
+            <Button
+                android:id="@+id/backScene"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/backButton"
+                app:layout_constraintTop_toBottomOf="@+id/calcResult"
+                tools:layout_editor_absoluteX="249dp" />
+
+            <EditText
+                android:id="@+id/numInput2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/numInput"
+                android:inputType="textPersonName"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteY="289dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <Spinner
+                android:id="@+id/operator"
+                android:layout_width="129dp"
+                android:layout_height="27dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:entries="@array/operator"
+                app:layout_constraintBottom_toTopOf="@+id/numInput2"
+                app:layout_constraintTop_toBottomOf="@+id/numInput1"
+                app:layout_constraintVertical_bias="0.506"
+                tools:layout_editor_absoluteX="129dp" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+</ScrollView>

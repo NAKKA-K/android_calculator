@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="calcButton">計算</string>
+    <string name="numInput">数値を入力</string>
+    <string name="calcResultDefault">=計算結果</string>
+    <string name="calcResult">=%1$d</string>
+    <string name="nextCalc">続けて計算する</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">×</string>
+    <string name="division">÷</string>
+    <string name="backButton">戻る</string>
+</resources>
