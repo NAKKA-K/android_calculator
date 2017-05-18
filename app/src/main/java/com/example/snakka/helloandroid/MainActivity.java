@@ -1,5 +1,6 @@
 package com.example.snakka.helloandroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,10 +24,11 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
 
     private TextView calcResult;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //このActivityで使われるlayoutファイルを指定する
 
         /*ボタンのリスナークラスを登録*/
         findViewById(R.id.calcButton1).setOnClickListener(this);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
     }
 
     @Override //テキストが変更されるときに呼ばれる。sは変更後の内容で編集不可能
-    public void onTextChanged(CharSequence s, int start, int befor, int count){
+    public void onTextChanged(CharSequence s, int start, int before, int count){
 
     }
 
@@ -64,8 +66,56 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
     }
 
 
+    @Override
+    public void onClick(View v){
+        int buttonId = v.getId(); //押されたボタンのIDを取得
+
+        switch(buttonId){
+            case R.id.calcButton1:
+                Intent intent1 = new Intent(this, AnotherCalcActivity.class);
+                startActivityForResult(intent1, REQUEST_CODE_ANOTHER_CALC_1);
+                break;
+            case R.id.calcButton2:
+                Intent intent2 = new Intent(this, AnotherCalcActivity.class);
+                startActivityForResult(intent2, REQUEST_CODE_ANOTHER_CALC_2);
+                break;
+            case R.id.nextCalc:
+                if(!checkEditTextInput()) return;
+
+                int result = calc();
+                numInput1.setText(String.valueOf(result));
+                refreshResult();
+                break;
+        }
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode != RESULT_OK) return;
+
+        Bundle resultBundle = data.getExtras();
+        if(!resultBundle.containsKey("result")) return;
+        int result = resultBundle.getInt("result");
+
+
+        if(requestCode == REQUEST_CODE_ANOTHER_CALC_1){
+            numInput1.setText(String.valueOf(result));
+        }else if(requestCode == REQUEST_CODE_ANOTHER_CALC_2){
+            numInput2.setText(String.valueOf(result));
+        }
+
+        refreshResult();
+    }
+
+
+
+    //EditTextの編集が終わった後に呼ばれ、場合によってresultに反映する
     private void refreshResult(){
-        if(checkEditTextInput()){
+        if(checkEditTextInput()){ //2項目に値が書き込まれているか?
             int result = calc();
 
             String resultText = getString(R.string.calcResult, result); //resultの数値が、calcResultの書式になって返る
@@ -105,22 +155,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
             default:
                 throw new RuntimeException();
         }
-    }
-
-
-    @Override
-    public void onClick(View v){
-        int buttonId = v.getId(); //押されたボタンのIDを取得
-
-        switch(buttonId){
-            case R.id.calcButton1:
-                break;
-            case R.id.calcButton2:
-                break;
-            case R.id.nextCalc:
-                break;
-        }
-
     }
 
 }
