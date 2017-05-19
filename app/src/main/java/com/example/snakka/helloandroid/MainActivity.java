@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
             case R.id.nextCalc:
                 if(!checkEditTextInput()) return;
 
-                int result = calc();
+                long result = calc();
                 numInput1.setText(String.valueOf(result));
                 refreshResult();
                 break;
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
     //EditTextの編集が終わった後に呼ばれ、場合によってresultに反映する
     private void refreshResult(){
         if(checkEditTextInput()){ //2項目に値が書き込まれているか?
-            int result = calc();
+            long result = calc();
 
             String resultText = getString(R.string.calcResult, result); //resultの数値が、calcResultの書式になって返る
             calcResult.setText(resultText);
@@ -133,12 +133,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, View
     }
 
 
-    private int calc(){
+    private long calc(){
         String input1 = numInput1.getText().toString();
         String input2 = numInput2.getText().toString();
 
-        int num1 = Integer.parseInt(input1);
-        int num2 = Integer.parseInt(input2);
+
+        long num1, num2;
+        try{
+            num1 = Long.parseLong(input1);
+            num2 = Long.parseLong(input2);
+        }catch(NumberFormatException e){ //入力された数字がlong型の範囲を超えた場合、0初期化
+            num1 = 0;
+            num2 = 0;
+        }
 
         //Spinnerから、選択中のindexを取得する
         int operator = operatorSelector.getSelectedItemPosition();

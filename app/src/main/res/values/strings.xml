@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">Calculator</string>
-    <string name="title_another_calc">別の画面で計算中</string>
-    <string name="calcButton">計算</string>
-    <string name="numInput">数値を入力</string>
-    <string name="calcResultDefault">=計算結果</string>
+    <string name="app_name">Easy Calculator</string>
+    <string name="title_another_calc">Calculating in another activity</string>
+    <string name="calcButton">calculate</string>
+    <string name="numInput">input number</string>
+    <string name="calcResultDefault">=result</string>
     <string name="calcResult">=%1$d</string>
-    <string name="nextCalc">続けて計算する</string>
+    <string name="nextCalc">continue</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="multiply">×</string>
     <string name="division">÷</string>
-    <string name="backButton">戻る</string>
+    <string name="backButton">back</string>
 </resources>
